@@ -115,21 +115,12 @@
                                 <input type="number" name="jumlah" class="form-control" required>
                             </div>
                             <div class="form-group col-md-6 col-12">
-                                <label class="form-label">Refrensi Desain <span class="text-danger">*</span></label>
-                                <input type="text" name="desain" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-6 col-12">
                                 <label class="form-label">Warna <span class="text-danger">*</span></label>
                                 <input type="text" name="warna" class="form-control" required>
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label class="form-label">Ukuran <span class="text-danger">*</span></label>
-                                <select class="form-select" name="ukuran" required>
-                                    <option value="" selected>-</option>
-                                    @foreach (App\Models\Order::ORDER_SIZE as $size)
-                                        <option value="{{ $size }}">{{ ucwords($size) }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="number" name="ukuran" class="form-control" required>
                             </div>
                             <div class="form-group col-md-6 col-12">
                                 <label class="form-label">Posisi <span class="text-danger">*</span></label>
@@ -194,23 +185,12 @@
                                     <input type="number" name="jumlah" class="form-control" required value="{{ $item->jumlah }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
-                                    <label class="form-label">Refrensi Desain <span class="text-danger">*</span></label>
-                                    <input type="text" name="desain" class="form-control" required value="{{ $item->desain }}">
-                                </div>
-                                <div class="form-group col-md-6 col-12">
                                     <label class="form-label">Warna <span class="text-danger">*</span></label>
                                     <input type="text" name="warna" class="form-control" required value="{{ $item->warna }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label class="form-label">Ukuran <span class="text-danger">*</span></label>
-                                    <select class="form-select" name="ukuran" required>
-                                        <option value="" selected>-</option>
-                                        @foreach (App\Models\Order::ORDER_SIZE as $size)
-                                            <option value="{{ $size }}" @selected($item->ukuran == $size)>
-                                                {{ ucwords($size) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" name="ukuran" class="form-control" required value="{{ $item->ukuran }}">
                                 </div>
                                 <div class="form-group col-md-6 col-12">
                                     <label class="form-label">Posisi <span class="text-danger">*</span></label>

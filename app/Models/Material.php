@@ -15,7 +15,8 @@ class Material extends Model
     protected $fillable = [
         'order_id',
         'nama_item',
-        'jumlah_diterima',
+        'desain',
+
     ];
 
     protected function createdAtFormatted(): Attribute

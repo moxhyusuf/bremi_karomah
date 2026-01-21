@@ -14,7 +14,7 @@
             <div class="row g-3">
 
                 {{-- Date From --}}
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label class="form-label">Date From</label>
                     <input type="date" name="date_from" class="form-control" value="{{ request('date_from') }}">
                 </div>
@@ -26,7 +26,7 @@
                 </div>
 
                 {{-- Status --}}
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="form-label">Status</label>
                     <select name="status" class="form-select">
                         <option value="">All</option>
@@ -36,6 +36,21 @@
                         <option value="retur" {{ request('status') == 'retur' ? 'selected' : '' }}>Retur</option>
                     </select>
                 </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Kode Barang</label>
+                    <input type="text" name="kode" class="form-control" value="{{ request('kode') }}">
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label">Jenis Barang</label>
+                    <select name="tipe" class="form-select">
+                        <option value="">All</option>
+                        <option value="sablon" {{ request('tipe') == 'sablon' ? 'selected' : '' }}>Sablon</option>
+                        <option value="bordir" {{ request('tipe') == 'bordir' ? 'selected' : '' }}>Bordir</option>
+                    </select>
+                </div>
+
 
                 {{-- Generate & Export --}}
                 <div class="col-md-2 d-flex align-items-end">
@@ -66,21 +81,26 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Kode</th>
+                                <th>Tanggal</th>
+                                <th>Kode Barang</th>
                                 <th>Customer</th>
                                 <th>Tipe</th>
-                                <th>Jumlah</th>
+                                <th>Barang Diterima</th>
+                                <th>Barang Dikirim</th>
+                                <th>Balance</th>
                                 <th>Status</th>
-                                <th>Tanggal</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $o)
                                 <tr>
+                                    <td>{{ $o->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $o->kode }}</td>
                                     <td>{{ $o->customer->nama }}</td>
                                     <td>{{ $o->tipe }}</td>
                                     <td>{{ $o->jumlah }}</td>
+                                    <td>{{ collect($o->delivery)->sum('jumlah') }}</td>
+                                    <td>{{ $o->jumlah - collect($o->delivery)->sum('jumlah') }}</td>
                                     <td>
                                         @php
                                             $colors = [
@@ -95,11 +115,13 @@
                                             {{ ucfirst($o->status) }}
                                         </span>
                                     </td>
-                                    <td>{{ $o->created_at->format('d/m/Y') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="alert alert-light border">
+                    <strong>Total Barang:</strong> {{ $totalJumlah }}
                 </div>
             @else
                 <div class="text-center py-5 text-muted">

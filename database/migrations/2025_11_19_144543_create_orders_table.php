@@ -15,9 +15,8 @@ return new class extends Migration
             $table->string('kode')->unique();
             $table->enum('tipe', Order::ORDER_TYPE);
             $table->integer('jumlah');
-            $table->string('desain');
             $table->string('warna');
-            $table->enum('ukuran', Order::ORDER_SIZE);
+            $table->string('ukuran');
             $table->string('posisi');
             $table->enum('status', Order::ORDER_STATUS)->default(Order::ORDER_STATUS[0]);
             $table->string('catatan')->nullable();

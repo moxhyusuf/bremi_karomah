@@ -14,17 +14,17 @@ class MaterialSeeder extends Seeder
             [
                 'order_id' => '1',
                 'nama_item' => 'Kain drill putih',
-                'jumlah_diterima' => '50',
+                'desain' => 'desain/1.jpg',
             ],
             [
                 'order_id' => '2',
                 'nama_item' => 'Kain drill putih',
-                'jumlah_diterima' => '100',
+                'desain' => 'desain/2.jpg',
             ],
             [
                 'order_id' => '1',
                 'nama_item' => 'Kain drill putih',
-                'jumlah_diterima' => '70',
+                'desain' => 'desain/3.png',
             ],
         ];
 

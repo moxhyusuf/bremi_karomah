@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders');
             $table->string('nama_item');
-            $table->integer('jumlah_diterima');
+            $table->string('desain')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -19,7 +19,7 @@
                                 <th>No</th>
                                 <th>Kode Order</th>
                                 <th>Nama Item</th>
-                                <th>Jumlah</th>
+                                <th>Desain</th>
                                 <th>Tanggal</th>
                                 @if (auth()->user()->role !== 'manager')
                                     <th class="no-sort">Aksi</th>
@@ -32,7 +32,13 @@
                                     <td>{{ $i + 1 }}</td>
                                     <td> {{ $item->order->kode }}</td>
                                     <td>{{ $item->nama_item }}</td>
-                                    <td> {{ $item->jumlah_diterima }}</td>
+                                    <td>
+                                        @if ($item->desain)
+                                            <img height="100" src="{{ asset('storage/' . $item->desain) }}" alt="desain">
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                     <td>{{ $item->createdAtFormatted }}</td>
                                     @if (auth()->user()->role !== 'manager')
                                         <td>
@@ -67,7 +73,7 @@
                     <h1 class="modal-title fs-5 text-capitalize">Form Order</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form autocomplete="off" action="{{ route('material.store') }}" method="POST">
+                <form autocomplete="off" action="{{ route('material.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf()
                     <div class="modal-body">
                         <div class="row g-3">
@@ -87,8 +93,8 @@
                                 <input type="text" name="nama_item" class="form-control" required>
                             </div>
                             <div class="form-group col-12">
-                                <label class="form-label">Jumlah Diterima <span class="text-danger">*</span></label>
-                                <input type="number" name="jumlah_diterima" class="form-control" required>
+                                <label class="form-label">Desain <span class="text-danger"></span></label>
+                                <input type="file" name="desain" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -109,7 +115,7 @@
                         <h1 class="modal-title fs-5 text-capitalize">Form Material</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('material.update', $item->id) }}" method="POST">
+                    <form action="{{ route('material.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -130,8 +136,8 @@
                                     <input type="text" name="nama_item" class="form-control" required value="{{ $item->nama_item }}">
                                 </div>
                                 <div class="form-group col-12">
-                                    <label class="form-label">Jumlah Diterima <span class="text-danger">*</span></label>
-                                    <input type="number" name="jumlah_diterima" class="form-control" required value="{{ $item->jumlah_diterima }}">
+                                    <label class="form-label">Desain <span class="text-danger"></span></label>
+                                    <input type="file" name="desain" class="form-control">
                                 </div>
                             </div>
                         </div>

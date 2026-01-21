@@ -19,7 +19,6 @@ class Order extends Model
         'kode',
         'tipe',
         'jumlah',
-        'desain',
         'warna',
         'ukuran',
         'posisi',
@@ -29,7 +28,6 @@ class Order extends Model
 
     public const ORDER_TYPE = ['sablon', 'bordir'];
     public const ORDER_STATUS = ['pending', 'proses', 'selesai', 'retur'];
-    public const ORDER_SIZE = ['M', 'L', 'XL', 'XXL', 'XXXL'];
 
     protected function createdAtFormatted(): Attribute
     {

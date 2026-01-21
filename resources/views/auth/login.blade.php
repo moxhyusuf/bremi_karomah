@@ -13,7 +13,7 @@
                     <div class="d-table-cell align-middle">
 
                         <div class="text-center mt-4">
-                            <h1 class="h2">CV. Bremi Barokah</h1>
+                            <h1 class="h2">CV. Bremi Karomah</h1>
                             <p class="lead">Login Untuk Melanjutkan</p>
                         </div>
 
